@@ -753,6 +753,7 @@ public final class PlayerEnterWorldService {
 			 * ENd of GM-Part
 			 */
 
+			/* Remove Useless buff
 			// Service Security Buff
 			if (player.getMembership() >= 0) {
 				serviceBuff = new ServiceBuff(2);
@@ -794,7 +795,7 @@ public final class PlayerEnterWorldService {
 			else {
 				playersBonus = new PlayersBonus(1);
 				playersBonus.endEffect(player, 1);
-			}
+			}*/
 
 			// Abyss Logon 4.9
 			if (player.getRace() == Race.ELYOS) {

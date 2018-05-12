@@ -404,8 +404,8 @@ public class PlayerRestrictions extends AbstractRestrictions {
 		if (player.getEffectController().isAbnormalSet(AbnormalState.HIDE)) {
 			PacketSendUtility.sendPacket(player, SM_SYSTEM_MESSAGE.STR_EXCHANGE_CANT_EXCHANGE_WHILE_INVISIBLE);
 			return false;
-		} if (level < 10) {
-			PacketSendUtility.sendPacket(player, SM_SYSTEM_MESSAGE.STR_FREE_EXPERIENCE_CHARACTER_CANT_TRADE("10"));
+		} if (level < 1) { // FIXED
+			PacketSendUtility.sendPacket(player, SM_SYSTEM_MESSAGE.STR_FREE_EXPERIENCE_CHARACTER_CANT_TRADE("1"));
 			return false;
 		}
 		return true;
