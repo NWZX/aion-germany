@@ -7,7 +7,7 @@
     <property name="src" location="src"/>
     <property name="config" location="config"/>
     <property name="lib" location="libs"/>
-    <property name="build" location="build"/>
+    <property name="build" location="../../AGbuild"/>
     <property name="build.classes" location="${build}/classes"/>
     <property name="build.dist" location="${build}/dist"/>
     <property name="build.dist.gs" location="${build.dist}/AL-Game"/>
