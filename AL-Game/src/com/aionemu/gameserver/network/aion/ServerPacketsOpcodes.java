@@ -287,6 +287,8 @@ public class ServerPacketsOpcodes {
 		addPacketOpcode(SM_MAC_ADDRESS.class, 0x166, idSet); // 5.6 TODO
 		addPacketOpcode(SM_CHECK_MAIL_SIZE.class, 0x95, idSet); // 5.4 TODO
 		addPacketOpcode(SM_MINIONS.class, 0x16A, idSet); // 5.6 TODO
+		addPacketOpcode(SM_EVENT_WINDOW.class, 0x13E, idSet); // 5.8 TODO
+		addPacketOpcode(SM_EVENT_WINDOW_ITEMS.class, 0x154, idSet); // 5.8 TODO
 		// --------------------ABYSS LANDING-------------------------//
 		addPacketOpcode(SM_ABYSS_LANDING_LEVEL.class, 0x13C, idSet); // 5.6 TODO
 		addPacketOpcode(SM_ABYSS_LANDING.class, 0x13D, idSet); // 5.6 TODO
@@ -312,7 +314,7 @@ public class ServerPacketsOpcodes {
 		// -------------------EQUIPMENT SETTING----------------------//
 		addPacketOpcode(SM_EQUIPMENT_SETTING.class, 0x165, idSet); // 5.6 TODO
 		// -------------------BATTLEFIELD UNION----------------------//
-		addPacketOpcode(SM_BATTLEFIELD_UNION_REGISTER.class, 0x154, idSet); // 5.6 TODO
+		//addPacketOpcode(SM_BATTLEFIELD_UNION_REGISTER.class, 0x154, idSet); // 5.6 TODO
 		addPacketOpcode(SM_BATTLEFIELD_UNION.class, 0x156, idSet); // 5.6 TODO
 		addPacketOpcode(SM_BATTLEFIELD_UNION_POINTS.class, 0x157, idSet); // 5.6 TODO
 		// --------------------UNKNOWN PACKETS-----------------------//
@@ -330,7 +332,6 @@ public class ServerPacketsOpcodes {
 		addPacketOpcode(SM_UNK_13B.class, 0x13B, idSet); // 5.1 TODO
 		addPacketOpcode(SM_UNK_158.class, 0x159, idSet); // 5.3 TODO SM_RANK_LIST
 		addPacketOpcode(SM_MY_DOCUMENTATION.class, 0x15A, idSet); // 5.6 TODO
-		addPacketOpcode(SM_UNK_154.class, 0x153, idSet); // TODO SM_FLAG_UPDATE?
 		addPacketOpcode(SM_UNK_12B.class, 0x12B, idSet); // 5.6 TODO
 		addPacketOpcode(SM_UNK_168.class, 0x168, idSet); // 5.6 TODO
 		addPacketOpcode(SM_SKILL_ANIMATION.class, 0x150, idSet); // 5.6 TODO

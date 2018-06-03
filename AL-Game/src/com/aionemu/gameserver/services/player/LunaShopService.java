@@ -16,8 +16,6 @@
  */
 package com.aionemu.gameserver.services.player;
 
-import static java.lang.System.out;
-
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -57,6 +55,8 @@ import com.aionemu.gameserver.utils.ThreadPoolManager;
 import com.aionemu.gameserver.world.World;
 import com.aionemu.gameserver.world.WorldMapInstance;
 import com.aionemu.gameserver.world.knownlist.Visitor;
+
+import javolution.util.FastList;
 
 public class LunaShopService {
 
@@ -203,12 +203,18 @@ public class LunaShopService {
 
 	public void generateDailyCraft() {
 		if (DailyCraft.size() > 0) {
+			dailyGenerated = false;
 			DailyCraft.clear();
 		}
+		
+		FastList<LunaTemplate> test = DataManager.LUNA_DATA.getLunaTemplatesAny();
+		Random rand = new Random();
 		for (int i = 0; i < 5; i++) {
-			int templateId = Rnd.get(30000, 37016);
-			DailyCraft.add(templateId);
+	        int randomIndex = rand.nextInt(test.size());
+	        LunaTemplate randomElement = test.get(randomIndex);
+	        DailyCraft.add(randomElement.getId());
 		}
+
 		if (!dailyGenerated) {
 			updateDailyCraft();
 		}
@@ -268,14 +274,10 @@ public class LunaShopService {
 	}
 
 	public void specialDesign(Player player, int recipeId) {
-		LunaTemplate recipe = DataManager.LUNA_DATA.getLunaTemplateById(recipeId + (int) player.getLunaAccount());
-//		System.out.println("Recipe ID: " + recipe.getId());
+		LunaTemplate recipe = DataManager.LUNA_DATA.getLunaTemplateById(recipeId);
 		int product_id = recipe.getProductid();
-//		System.out.println("Produkt ID: " + recipe.getProductid());
 		int quantity = recipe.getQuantity();
-//		System.out.println("Quantity : " + recipe.getQuantity());
 		ItemTemplate item = DataManager.ITEM_DATA.getItemTemplate(product_id);
-//		System.out.println("Item Id : " + item.getTemplateId());
 		boolean isSuccess = isSuccess(player, recipeId);
 		if (isSuccess) {
 			for (LunaComponent lc : recipe.getLunaComponent()) {
@@ -310,20 +312,18 @@ public class LunaShopService {
 
 	public void craftBox(Player player) {
 		int itemId = 188055460;
-		ItemTemplate item = DataManager.ITEM_DATA.getItemTemplate(itemId);
 		if (player.getPlayerLunaShop().isFreeChest()) {
-			PacketSendUtility.sendPacket(player, new SM_LUNA_SYSTEM_INFO(5));
-			PacketSendUtility.sendPacket(player, new SM_LUNA_SYSTEM(3, itemId, 1, true));
-			PacketSendUtility.sendPacket(player, new SM_LUNA_SYSTEM_INFO(0));
-			PacketSendUtility.sendPacket(player, new SM_LUNA_SYSTEM_INFO(1, 1, 1));
-			ItemService.addItem(player, itemId, 1); // Luna Material Chest
 			player.getPlayerLunaShop().setFreeChest(false);
 		}
 		else {
-			out.println("TODO!");
-			// player.setLunaAccount(player.getLunaAccount() - 5);
-			PacketSendUtility.sendPacket(player, new SM_LUNA_SYSTEM(3, item, 0));
+			player.setLunaAccount(player.getLunaAccount() - 5);
+			PacketSendUtility.sendPacket(player, new SM_LUNA_SYSTEM_INFO(0));
+			
 		}
+		PacketSendUtility.sendPacket(player, new SM_LUNA_SYSTEM_INFO(5));
+		PacketSendUtility.sendPacket(player, new SM_LUNA_SYSTEM(3, itemId, 1, true));
+		PacketSendUtility.sendPacket(player, new SM_LUNA_SYSTEM_INFO(1, 1, 1));
+		ItemService.addItem(player, itemId, 1); // Luna Material Chest
 	}
 
 	private boolean isSuccess(Player player, int recipeId) {
