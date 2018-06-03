@@ -18,7 +18,7 @@ ECHO.
 SET /P OPTION=Type your option and press ENTER: 
 IF %OPTION% == 1 (
 SET MODE=DEVELOPMENT
-SET JAVA_OPTS=-Xms3072m -Xmx3072m -XX:MaxHeapSize=3072m -Xdebug -Xrunjdwp:transport=dt_socket,address=8998,server=y,suspend=n -ea
+SET JAVA_OPTS=-Xms4072m -Xmx4072m -XX:MaxHeapSize=4072m -Xdebug -Xrunjdwp:transport=dt_socket,address=8998,server=y,suspend=n -ea
 CALL StartGS.bat
 )
 IF %OPTION% == 2 (
